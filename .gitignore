@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+
+# Environment files (contain secrets!)
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+
+# Hardhat / Solidity
+artifacts/
+cache/
+typechain-types/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Test coverage
+coverage/
+
+# Misc
+*.local
+*.tgz

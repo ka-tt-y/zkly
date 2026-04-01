@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_ZKLY_API_URL: "http://localhost:3001"
+        VITE_XEROSTARK_API_URL: "https://xerostark.xyz/api/v1"
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - FRONTEND_URL=http://localhost
+      - XEROSTARK_API_URL=${XEROSTARK_API_URL:-https://xerostark.xyz/api/v1}
+      - STORACHA_KEY=${STORACHA_KEY:-}
+      - STORACHA_PROOF=${STORACHA_PROOF:-}
+      - STORACHA_WALLET_HASH_SECRET=${STORACHA_WALLET_HASH_SECRET:-}
+      - STARKNET_RPC_URL=${STARKNET_RPC_URL:-}
+      - STARKNET_RELAYER_ADDRESS=${STARKNET_RELAYER_ADDRESS:-}
+      - STARKNET_RELAYER_PRIVATE_KEY=${STARKNET_RELAYER_PRIVATE_KEY:-}
+    volumes:
+      - backend-data:/app/data
+
+volumes:
+  backend-data:
